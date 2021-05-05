@@ -1,7 +1,7 @@
 <div class="container">
   <div class="header">
     <h2>Venues</h2>
-    <h4>Gathering data...</h4>
+    <h2>Gathering data...</h2>
   </div>
   <div class="map">
     <google-map height="500px" width="100%" [center]="initialCenter" *ngIf="venuePoints.length > 0">
@@ -15,5 +15,10 @@
       <div class="venues-item" *ngFor="let photo of currentVenuePhotos">
         <img class="venue-item-photo" [src]="photo.src" [alt]="photo.date">
       </div>
+  </div>
+  <div class="venues empty" *ngIf="currentVenuePhotos.length === 0 && pointClicked">
+    <p>Ooops... Only burger I can show is this guy</p>
+    <h3 class="burger-icon-empty">🍔</h3>
+    <p>Try to check another </p>
   </div>
 </div>

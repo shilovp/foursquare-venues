@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
   venuePoints: VenuePoint[] = [];
   currentVenuePhotos: VenuePhoto[] = [];
 
+  pointClicked = false;
+
   constructor(private _service: AppComponentService) {
   }
 
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   getPhotos(point: VenuePoint) {
+    this.pointClicked = true;
     this.currentVenuePhotos = [];
     console.log(point);
     this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
