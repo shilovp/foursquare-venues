@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'foursquare-venues';
+  mapType = "SATELLITE";
+
+  initialCenter = {
+    lat: 28.704060,
+    lng: 77.102493
+  }
+
+  constructor() { }
 }
