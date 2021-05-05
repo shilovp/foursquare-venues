@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { AppComponentService } from './app.component.service';
 
 @Component({
@@ -13,9 +12,10 @@ export class AppComponent implements OnInit {
   initialCenter = {
     lat: 58.3779413,
     lng: 26.7316876
-  } // tartu bus station
+  } // tartu bus station,
 
   venuePoints: VenuePoint[] = [];
+  currentVenuePhotos: VenuePhoto[] = [];
 
   constructor(private _service: AppComponentService) {
   }
@@ -39,7 +39,8 @@ export class AppComponent implements OnInit {
           label: {
             text: '🍔',
             color: 'green',
-          }
+          },
+          id: v.id
         }
       );
       this.initialCenter = this.venuePoints[0].position;
@@ -47,8 +48,21 @@ export class AppComponent implements OnInit {
     });
   }
 
-  openPoint(point: VenuePoint) {
+  getPhotos(point: VenuePoint) {
+    this.currentVenuePhotos = [];
     console.log(point);
+    this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
+      console.log(resp)
+      resp.response.photos.items.forEach((photo: any) => {
+        this.currentVenuePhotos.push(
+          {
+            src: photo.prefix + photo.width + 'x' + photo.height + photo.suffix,
+            source: photo.source.name,
+            date: photo.createdAt
+          }
+        );
+      });
+    });
   }
 }
 
@@ -62,5 +76,11 @@ export interface VenuePoint {
     color: string,
     text: string
   }
+  id: string;
+}
 
+export interface VenuePhoto {
+  src: string;
+  source: string;
+  date: Date;
 }

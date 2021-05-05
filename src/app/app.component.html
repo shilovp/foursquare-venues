@@ -6,12 +6,14 @@
   <div class="map">
     <google-map height="500px" width="100%" [center]="initialCenter" *ngIf="venuePoints.length > 0">
       <map-marker #markerElem *ngFor="let point of venuePoints" [position]="point.position" [label]="point.label"
-        [title]="point.name" [clickable]="true" >
+        [title]="point.name" [clickable]="true" (mapClick)="getPhotos(point)">
 
       </map-marker>
     </google-map>
   </div>
-  <div class="venues" *ngIf="venuePoints.length > 0">
-    {{venuePoints}}
+  <div class="venues" *ngIf="currentVenuePhotos.length > 0">
+      <div class="venues-item" *ngFor="let photo of currentVenuePhotos">
+        <img class="venue-item-photo" [src]="photo.src" [alt]="photo.date">
+      </div>
   </div>
 </div>

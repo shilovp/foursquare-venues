@@ -9,7 +9,8 @@ import { catchError, retry } from 'rxjs/operators';
 export class AppComponentService {
 
   CATEGORY_ID = '4bf58dd8d48988d16c941735';
-  foursquareURL = 'https://api.foursquare.com/v2/venues/search';
+  foursquareVenuesURL = 'https://api.foursquare.com/v2/venues/search';
+  foursquarePhotosURL = 'https://api.foursquare.com/v2/venues/';
 
   client_id = 'JOHDLLJ0YJMSMAS4CMIMKM2M05J1WTEU2BL2TBYZ3HMDXDCR';
   client_secret = 'POKAITH5RQG12OV1L0HROQFKLUZZHLRUJMGHUHUHVEJGQDHV';
@@ -26,10 +27,18 @@ export class AppComponentService {
   constructor(private _http: HttpClient) { }
 
   getBurgerVenues() {
-    return this._http.get(this.foursquareURL, {
+    return this._http.get(this.foursquareVenuesURL, {
       params: {
         client_id: this.client_id, client_secret: this.client_secret,
         ll: this.tartuBusStation.lat + ',' + this.tartuBusStation.lng, v: this.version, categoryId: this.CATEGORY_ID, radius: this.radius
+      }
+    });
+  }
+
+  getVenuePhotos(id: any) {
+    return this._http.get(this.foursquarePhotosURL + id + '/photos', {
+      params: {
+        client_id: this.client_id, client_secret: this.client_secret, v: this.version, limit: '200'
       }
     });
   }
