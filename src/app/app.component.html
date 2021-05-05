@@ -4,13 +4,14 @@
     <h4>Gathering data...</h4>
   </div>
   <div class="map">
-    <google-map
-    height="500px"
-    width="100%"
-    [center]="initialCenter"
-    ></google-map>
-  </div>
-  <div class="venues">
+    <google-map height="500px" width="100%" [center]="initialCenter" *ngIf="venuePoints.length > 0">
+      <map-marker #markerElem *ngFor="let point of venuePoints" [position]="point.position" [label]="point.label"
+        [title]="point.name" [clickable]="true" >
 
+      </map-marker>
+    </google-map>
+  </div>
+  <div class="venues" *ngIf="venuePoints.length > 0">
+    {{venuePoints}}
   </div>
 </div>
