@@ -12,10 +12,14 @@ export class AppComponent implements OnInit {
   pointName = '';
   mapType = "SATELLITE";
 
-  initialCenter = {
-    lat: 40.7345492, //58.3779413,
-    lng: -74.0007608 //26.7316876
-  } // tartu bus station, 40.7345492,-74.0007608
+  // default is Tartu location
+  location: VenueLocation = {
+    name: "tartu",
+    position: {
+      lat: 58.3779413,
+      lng: 26.7316876
+    }
+  };
 
   venuePoints: VenuePoint[] = [];
   currentVenuePhotos: VenuePhoto[] = [];
@@ -26,13 +30,44 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._service.getBurgerVenues().subscribe((resp: any) => {
+    this.getBurgerVenues();
+  }
+
+  changeLocation(name: string) {
+    switch (name) {
+      case 'tartu':
+        this.location = {
+          name: name,
+          position: {
+            lat: 58.3779413,
+            lng: 26.7316876
+          }
+        }
+        break;
+      case 'new-york':
+        this.location = {
+          name: name,
+          position: {
+            lat: 40.7345492,
+            lng: -74.0007608
+          }
+        }
+        break;
+    }
+
+    this.getBurgerVenues();
+  }
+
+  getBurgerVenues() {
+    this._service.getBurgerVenues(this.location.position).subscribe((resp: any) => {
       console.log('resp: ', resp);
       this.extractVenuePoints(resp.response.venues);
     });
   }
 
+
   extractVenuePoints(venues: any) {
+    this.venuePoints = [];
     venues.forEach((v: any) => {
       this.venuePoints.push(
         {
@@ -61,15 +96,15 @@ export class AppComponent implements OnInit {
 
   getRecentPhoto(point: VenuePoint) {
     this.currentVenuePhotos = [];
-  /*  for (let i = 0; i < 20; i++) {
-      this.currentVenuePhotos.push(
-        {
-          src: 'https://picsum.photos/200/300',
-          date: new Date(),
-          name: 'Test name'
-        }
-      );
-    }*/
+    /*  for (let i = 0; i < 20; i++) {
+        this.currentVenuePhotos.push(
+          {
+            src: 'https://picsum.photos/200/300',
+            date: new Date(),
+            name: 'Test name'
+          }
+        );
+      }*/
 
     this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
       console.log(resp);
@@ -104,4 +139,12 @@ export interface VenuePhoto {
   src: string;
   date: Date;
   name: string;
+}
+
+export interface VenueLocation {
+  name: string;
+  position: {
+    lat: number,
+    lng: number
+  }
 }

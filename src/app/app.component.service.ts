@@ -13,21 +13,16 @@ export class AppComponentService {
   client_id = 'JOHDLLJ0YJMSMAS4CMIMKM2M05J1WTEU2BL2TBYZ3HMDXDCR';
   client_secret = 'POKAITH5RQG12OV1L0HROQFKLUZZHLRUJMGHUHUHVEJGQDHV';
 
-  tartuBusStation = {
-    lat: 40.7345492, //58.3779413,
-    lng: -74.0007608 //26.7316876
-  } // tartu bus station, 40.7345492,-74.0007608
-
   version = '20200505';
   radius = "1000"; // meters
 
   constructor(private _http: HttpClient) { }
 
-  getBurgerVenues() {
+  getBurgerVenues(position: any) {
     return this._http.get(this.foursquareVenuesURL, {
       params: {
         client_id: this.client_id, client_secret: this.client_secret,
-        ll: this.tartuBusStation.lat + ',' + this.tartuBusStation.lng, v: this.version, categoryId: this.CATEGORY_ID, radius: this.radius
+        ll: position.lat + ',' + position.lng, v: this.version, categoryId: this.CATEGORY_ID, radius: this.radius
       }
     });
   }

@@ -81,3 +81,11 @@ p {
 
     color: rgb(240, 229, 229);
 }
+
+.location-switch span {
+    cursor: pointer;
+}
+
+.selected-location {
+    border-bottom: 3px solid white;
+}

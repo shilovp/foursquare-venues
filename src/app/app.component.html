@@ -1,10 +1,11 @@
 <div class="container">
   <div class="header">
     <h2>Venues</h2>
-    <h2>Gathering data...</h2>
+    <h2 class="location-switch"><span [ngClass]="{'selected-location': location.name === 'tartu'}" (click)="changeLocation('tartu')">Tartu</span> or <span
+        [ngClass]="{'selected-location': location.name === 'new-york'}" (click)="changeLocation('new-york')">New York</span> </h2>
   </div>
   <div class="map">
-    <google-map height="500px" width="100%" [center]="initialCenter" *ngIf="venuePoints.length > 0">
+    <google-map height="500px" width="100%" [center]="location.position" *ngIf="venuePoints.length > 0">
       <map-marker #markerElem="mapMarker" *ngFor="let point of venuePoints" [position]="point.position"
         [label]="point.label" [title]="point.name" [clickable]="true" (mapClick)="showName(point, markerElem)">
         <map-info-window>{{pointName}}</map-info-window>
