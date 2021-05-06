@@ -20,7 +20,8 @@ Here is their info in regards to dev accounts:
 
 ## Demo
 
-I have deployed live demo here: `ng serve`. You can check the solution there without need to install or deploy yourself. 
+I have deployed live demo here: `https://venue-burgers.firebaseapp.com` using firebase hosting 🚀 (also see webapp here: `https://venue-burgers.web.app`). 
+You can check the solution there without need to install or deploy yourself. 
 
 ## Hints for future inprovements
 
@@ -31,3 +32,5 @@ As an improvement I would do:
 - Of course production key for google map 
 - Some more styles for info window in a map and different minor details (dark mode on google map ? looks awesome in a dark theme of websites)
 - To avoid 'Too many requests' issue I would cache results or store them in advance, so app will not request foursquare api each time user perform a new request (if data exists in cache/storage of course.. In case of paid account would do the same to do not pay more then needed )
+
+- I would display venues photos for one venue point (clicking on it in a map). Basically that what I implemented initially :D
