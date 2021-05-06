@@ -1,8 +1,10 @@
 <div class="container">
   <div class="header">
     <h2>Venues</h2>
-    <h2 class="location-switch"><span [ngClass]="{'selected-location': location.name === 'tartu'}" (click)="changeLocation('tartu')">Tartu</span> or <span
-        [ngClass]="{'selected-location': location.name === 'new-york'}" (click)="changeLocation('new-york')">New York</span> </h2>
+    <h2 class="location-switch"><span [ngClass]="{'selected-location': location.name === 'tartu'}"
+        (click)="changeLocation('tartu')">Tartu</span> or <span
+        [ngClass]="{'selected-location': location.name === 'new-york'}" (click)="changeLocation('new-york')">New
+        York</span> </h2>
   </div>
   <div class="map">
     <google-map height="500px" width="100%" [center]="location.position" *ngIf="venuePoints.length > 0">
@@ -14,17 +16,15 @@
   </div>
   <div class="venues" *ngIf="currentVenuePhotos.length > 0">
     <div class="venues-item" *ngFor="let photo of currentVenuePhotos">
-      <div class="img-wrap">
-        <figure>
-          <img class="venue-item-photo" [src]="photo.src" [alt]="photo.date">
-          <figcaption>
-            <div class="venue-photo-description">
-              <div>{{photo.name}}</div>
-              <div>{{photo.date | date}}</div>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
+      <figure>
+        <img class="venue-item-photo" [src]="photo.src" [alt]="photo.name">
+        <figcaption>
+          <div class="venue-photo-description">
+            <div>{{photo.name}}</div>
+            <div>{{photo.date | date}}</div>
+          </div>
+        </figcaption>
+      </figure>
     </div>
   </div>
   <div class="venues empty" *ngIf="currentVenuePhotos.length === 0">

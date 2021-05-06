@@ -96,15 +96,15 @@ export class AppComponent implements OnInit {
 
   getRecentPhoto(point: VenuePoint) {
     this.currentVenuePhotos = [];
-    /*  for (let i = 0; i < 20; i++) {
-        this.currentVenuePhotos.push(
-          {
-            src: 'https://picsum.photos/200/300',
-            date: new Date(),
-            name: 'Test name'
-          }
-        );
-      }*/
+    /* for (let i = 0; i < 20; i++) {
+       this.currentVenuePhotos.push(
+         {
+           src: 'https://picsum.photos/1980/960',
+           date: new Date(),
+           name: 'Test name'
+         }
+       );
+     } */
 
     this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
       console.log(resp);
