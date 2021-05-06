@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +14,11 @@ export class AppComponentService {
   client_secret = 'POKAITH5RQG12OV1L0HROQFKLUZZHLRUJMGHUHUHVEJGQDHV';
 
   tartuBusStation = {
-    lat: 58.3779413,
-    lng: 26.7316876
-  }
+    lat: 40.7345492, //58.3779413,
+    lng: -74.0007608 //26.7316876
+  } // tartu bus station, 40.7345492,-74.0007608
 
   version = '20200505';
-
   radius = "1000"; // meters
 
   constructor(private _http: HttpClient) { }
@@ -38,7 +35,7 @@ export class AppComponentService {
   getVenuePhotos(id: any) {
     return this._http.get(this.foursquarePhotosURL + id + '/photos', {
       params: {
-        client_id: this.client_id, client_secret: this.client_secret, v: this.version, limit: '200'
+        client_id: this.client_id, client_secret: this.client_secret, v: this.version
       }
     });
   }

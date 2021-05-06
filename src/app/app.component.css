@@ -15,10 +15,37 @@
     justify-content: space-between;
 }
 
+.venues {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 0.5vw;
+    justify-content: space-between;
+}
+
+.venues .img-wrap {
+    flex: auto;
+    width: 300px;
+    margin: 0.5vw;
+}
+
+.venues img {
+    width: 100%;
+    height: auto;
+}
+
 .venues.empty {
     display: flex;
     flex-direction: column;
     place-items: center;
+}
+
+@media screen and (max-width: 400px) {
+    .venues .img-wrap {
+        margin: 0;
+    }
+    .venues {
+        justify-content: center;
+    }
 }
 
 h2,
