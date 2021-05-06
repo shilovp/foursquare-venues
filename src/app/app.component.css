@@ -33,6 +33,31 @@
     height: auto;
 }
 
+.venues figure {
+    overflow: hidden;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    position: relative;
+}
+
+figure > figcaption {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.575);
+    width: 100%;
+}
+
+.venue-photo-description {
+    display: flex;
+    flex-direction: column;
+    gap: .1rem;
+    color: white;
+    font-weight: 700;
+    padding: .5rem;
+    font-size: clamp(.725rem, 1.2vw, 1.2rem);
+    place-items: flex-end;
+}
+
 .venues.empty {
     display: flex;
     flex-direction: column;

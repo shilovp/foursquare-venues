@@ -5,18 +5,26 @@
   </div>
   <div class="map">
     <google-map height="500px" width="100%" [center]="initialCenter" *ngIf="venuePoints.length > 0">
-      <map-marker #markerElem="mapMarker" *ngFor="let point of venuePoints" [position]="point.position" [label]="point.label"
-        [title]="point.name" [clickable]="true" (mapClick)="showName(point, markerElem)">
+      <map-marker #markerElem="mapMarker" *ngFor="let point of venuePoints" [position]="point.position"
+        [label]="point.label" [title]="point.name" [clickable]="true" (mapClick)="showName(point, markerElem)">
         <map-info-window>{{pointName}}</map-info-window>
       </map-marker>
     </google-map>
   </div>
   <div class="venues" *ngIf="currentVenuePhotos.length > 0">
-      <div class="venues-item" *ngFor="let photo of currentVenuePhotos">
-          <div class="img-wrap">
-            <img class="venue-item-photo" [src]="photo.src" [alt]="photo.date" >
-          </div>
+    <div class="venues-item" *ngFor="let photo of currentVenuePhotos">
+      <div class="img-wrap">
+        <figure>
+          <img class="venue-item-photo" [src]="photo.src" [alt]="photo.date">
+          <figcaption>
+            <div class="venue-photo-description">
+              <div>{{photo.name}}</div>
+              <div>{{photo.date | date}}</div>
+            </div>
+          </figcaption>
+        </figure>
       </div>
+    </div>
   </div>
   <div class="venues empty" *ngIf="currentVenuePhotos.length === 0">
     <p>Ooops... Only burger in this location is this guy</p>
