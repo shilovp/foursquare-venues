@@ -60,7 +60,6 @@ export class AppComponent implements OnInit {
 
   getBurgerVenues() {
     this._service.getBurgerVenues(this.location.position).subscribe((resp: any) => {
-      console.log('resp: ', resp);
       this.extractVenuePoints(resp.response.venues);
     });
   }
@@ -89,7 +88,6 @@ export class AppComponent implements OnInit {
   }
 
   showName(venue: VenuePoint, marker: any) {
-    console.log('selected venue: ', venue);
     this.pointName = venue.name;
     this.infoWindow.open(marker);
   }
@@ -107,7 +105,6 @@ export class AppComponent implements OnInit {
      } */
 
     this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
-      console.log(resp);
       if (resp.response.photos.items) {
         let photo = resp.response.photos.items[0]; // since foursquare returns photos by relevance, I assume we are getting newest photo as first entry (timestamps I seen confirms that)
         this.currentVenuePhotos.push(
