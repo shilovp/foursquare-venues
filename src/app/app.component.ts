@@ -94,15 +94,6 @@ export class AppComponent implements OnInit {
 
   getRecentPhoto(point: VenuePoint) {
     this.currentVenuePhotos = [];
-    /* for (let i = 0; i < 20; i++) {
-       this.currentVenuePhotos.push(
-         {
-           src: 'https://picsum.photos/1980/960',
-           date: new Date(),
-           name: 'Test name'
-         }
-       );
-     } */
 
     this._service.getVenuePhotos(point.id).subscribe((resp: any) => {
       if (resp.response.photos.items) {
@@ -110,7 +101,7 @@ export class AppComponent implements OnInit {
         this.currentVenuePhotos.push(
           {
             src: photo.prefix + photo.width + 'x' + photo.height + photo.suffix,
-            date: photo.createdAt,
+            date: new Date(photo.createdAt * 1000),
             name: point.name
           }
         );
