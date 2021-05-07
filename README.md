@@ -35,9 +35,3 @@ As an improvement I would do:
 
 - I would display venues photos for one venue point (clicking on it in a map). Basically that what I implemented initially :D
 
-## Screenshots
-
-![image](https://user-images.githubusercontent.com/52400862/117324816-d367f680-ae98-11eb-988f-39b93a314994.png)
-
-![image](https://user-images.githubusercontent.com/52400862/117324902-ea0e4d80-ae98-11eb-8cdd-5a2843962be8.png)
-
