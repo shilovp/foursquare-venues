@@ -83,7 +83,6 @@ export class AppComponent implements OnInit {
         }
       );
       this.getRecentPhoto(v);
-      console.log(this.venuePoints);
     });
   }
 
